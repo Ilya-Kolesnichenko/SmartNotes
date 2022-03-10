@@ -1,15 +1,12 @@
-package com.ilyakoles.smartnotes.presentation
+package com.ilyakoles.smartnotes.presentation.folders
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import com.ilyakoles.smartnotes.R
 import com.ilyakoles.smartnotes.databinding.CalendarFragmentBinding
-import com.ilyakoles.smartnotes.databinding.FoldersFragmentBinding
 import com.ilyakoles.smartnotes.presentation.viewmodels.CalendarViewModel
 
 private const val ARG_PARAM1 = "param1"

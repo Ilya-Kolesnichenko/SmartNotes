@@ -1,13 +1,13 @@
-package com.ilyakoles.smartnotes.presentation
+package com.ilyakoles.smartnotes.presentation.login
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ilyakoles.smartnotes.R
 import com.ilyakoles.smartnotes.databinding.ActivityLoginBinding
+import com.ilyakoles.smartnotes.presentation.folders.FoldersActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -21,7 +21,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         prefs = getSharedPreferences("SmartNotes_Settings", Context.MODE_PRIVATE)
 
         val userPass = prefs.getString("Password", "")

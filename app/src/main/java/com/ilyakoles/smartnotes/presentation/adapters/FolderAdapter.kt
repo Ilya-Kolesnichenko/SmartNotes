@@ -11,7 +11,7 @@ class FolderAdapter (
     private val context: Context
 ) : ListAdapter<Folder, FolderViewHolder>(FolderDiffCalback) {
 
-    var onFolderClickListener: FolderAdapter.OnFolderClickListener? = null
+    var onFolderClickListener: OnFolderClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FolderViewHolder {
         val binding = ItemFolderBinding.inflate(
@@ -23,17 +23,14 @@ class FolderAdapter (
     }
 
     override fun onBindViewHolder(holder: FolderViewHolder, position: Int) {
-        val coin = getItem(position)
-        with(holder.binding) {
-            with(coin) {
-                val symbolsTemplate = context.resources.getString(R.string.symbols_template)
-                val lastUpdateTemplate = context.resources.getString(R.string.last_update_template)
-                tvSymbols.text = String.format(symbolsTemplate, fromSymbol, toSymbol)
-                tvPrice.text = price
-                tvLastUpdate.text = String.format(lastUpdateTemplate, lastUpdate)
-                Picasso.get().load(imageUrl).into(ivLogoCoin)
+       val folder = getItem(position)
+       with(holder.binding) {
+            with(folder) {
+                tvFolderName.text = name
+                tvCount.text = countElement.toString()
+                tvFolderDesc.text = description
                 root.setOnClickListener {
-                    onCoinClickListener?.onCoinClick(this)
+                    onFolderClickListener?.onFolderClick(this)
                 }
             }
         }

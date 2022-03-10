@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_baseline_calendar_today_24"
         android:title="@string/nav_calendar" />
 
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_baseline_how_to_reg_24"
+        android:title="@string/nav_profile" />
+
 </menu>

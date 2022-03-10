@@ -2,9 +2,11 @@ package com.ilyakoles.smartnotes.di.folders
 
 import android.app.Application
 import com.ilyakoles.smartnotes.di.ApplicationScope
-import com.ilyakoles.smartnotes.di.ViewModelModule
-import com.ilyakoles.smartnotes.di.users.UserDataModule
-import com.ilyakoles.smartnotes.presentation.*
+import com.ilyakoles.smartnotes.di.FolderViewModelModule
+import com.ilyakoles.smartnotes.presentation.folders.CalendarFragment
+import com.ilyakoles.smartnotes.presentation.folders.EditFolderFragment
+import com.ilyakoles.smartnotes.presentation.folders.FoldersActivity
+import com.ilyakoles.smartnotes.presentation.folders.FoldersFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -12,7 +14,7 @@ import dagger.Component
 @Component(
     modules = [
         FolderDataModule::class,
-        ViewModelModule::class
+        FolderViewModelModule::class
     ]
 )
 interface AppFolderComponents {
@@ -20,6 +22,7 @@ interface AppFolderComponents {
     fun inject(activity: FoldersActivity)
     fun inject(fragment: FoldersFragment)
     fun inject(fragment: CalendarFragment)
+    fun inject(fragment: EditFolderFragment)
 
     @Component.Factory
     interface Factory {

@@ -1,11 +1,10 @@
-package com.ilyakoles.smartnotes.presentation
+package com.ilyakoles.smartnotes.presentation.login
 
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.util.Patterns
 
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,13 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.ilyakoles.smartnotes.R
 import com.ilyakoles.smartnotes.databinding.FragmentNewUserBinding
+import com.ilyakoles.smartnotes.presentation.SmartNotesApp
+import com.ilyakoles.smartnotes.presentation.ViewModelFactory
 import com.ilyakoles.smartnotes.presentation.viewmodels.UserViewModel
-import com.ilyakoles.smartnotes.utils.FieldValidators
 import com.ilyakoles.smartnotes.utils.FormValidations.validateConfirmPassword
 import com.ilyakoles.smartnotes.utils.FormValidations.validateEmail
 import com.ilyakoles.smartnotes.utils.FormValidations.validateNicName
@@ -28,9 +27,7 @@ import com.ilyakoles.smartnotes.utils.FormValidations.validateUserName
 import com.ilyakoles.smartnotes.utils.RSACrypt
 import kotlinx.coroutines.launch
 import java.lang.RuntimeException
-import java.lang.Thread.sleep
 import javax.inject.Inject
-import kotlin.concurrent.thread
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -186,95 +183,6 @@ class NewUserFragment : Fragment() {
             }
         }
     }
-
-    /*   private fun validateUserName(): Boolean {
-           with(binding) {
-               if (tvLogin.text.toString().trim().isEmpty()) {
-                   tilLogin.error = "Логин не может быть пустым"
-                   tvLogin.requestFocus()
-                   return false
-               } else if (tvLogin.text.toString().length > 20) {
-                   tilLogin.error = "Логин не может содержать больше 20 символов"
-                   tvLogin.requestFocus()
-                   return false
-               } else {
-                   tilLogin.isErrorEnabled = false
-               }
-           }
-           return true
-       }*/
-
-/*    private fun validateNicName(): Boolean {
-        if (binding.tvNicName.text.toString().trim().isEmpty()) {
-            binding.tilNicName.error = "Ник не может быть пустым"
-            binding.tvNicName.requestFocus()
-            return false
-        } else {
-            binding.tilNicName.isErrorEnabled = false
-        }
-        return true
-    }
-
-
-    private fun validateEmail(): Boolean {
-        if (!binding.tvEmail.text.toString().trim().isEmpty()) {
-            if (!isValidEmail(binding.tvEmail.text.toString())) {
-                binding.tilEmail.error = "Введен некорректный e-mail"
-                binding.tvEmail.requestFocus()
-                return false
-            }
-        } else {
-            binding.tilEmail.isErrorEnabled = false
-        }
-        return true
-    }
-
-    private fun validatePassword(): Boolean {
-        if (binding.tvPassword.text.toString().trim().isEmpty()) {
-            binding.tilPassword.error = "Пароль не может быть пусным!"
-            binding.tvPassword.requestFocus()
-            return false
-        } else if (binding.tvPassword.text.toString().length < 6) {
-            binding.tilPassword.error = "password can't be less than 6"
-            binding.tvPassword.requestFocus()
-            return false
-        } else if (!isStringContainNumber(binding.tvPassword.text.toString())) {
-            binding.tilPassword.error = "Required at least 1 digit"
-            binding.tvPassword.requestFocus()
-            return false
-        } else if (!isStringLowerAndUpperCase(binding.tvPassword.text.toString())) {
-            binding.tilPassword.error =
-                "Password must contain upper and lower case letters"
-            binding.tvPassword.requestFocus()
-            return false
-        } else if (!isStringContainSpecialCharacter(binding.tvPassword.text.toString())) {
-            binding.tilPassword.error = "1 special character required"
-            binding.tvPassword.requestFocus()
-            return false
-        } else {
-            binding.tilPassword.isErrorEnabled = false
-        }
-        return true
-    }*/
-
-    /*   private fun validateConfirmPassword(): Boolean {
-           when {
-               binding.confirmPassword.text.toString().trim().isEmpty() -> {
-                   binding.confirmPasswordTextInputLayout.error = "Required Field!"
-                   binding.confirmPassword.requestFocus()
-                   return false
-               }
-               binding.confirmPassword.text.toString() != binding.password.text.toString() -> {
-                   binding.confirmPasswordTextInputLayout.error = "Passwords don't match"
-                   binding.confirmPassword.requestFocus()
-                   return false
-               }
-               else -> {
-                   binding.confirmPasswordTextInputLayout.isErrorEnabled = false
-               }
-           }
-           return true
-       }*/
 
     companion object {
         /**

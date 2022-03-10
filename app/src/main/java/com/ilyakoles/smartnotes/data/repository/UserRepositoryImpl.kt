@@ -2,18 +2,21 @@ package com.ilyakoles.smartnotes.data.repository
 
 import android.support.annotation.NonNull
 import android.util.Log
-import androidx.lifecycle.Transformations
+import android.util.Xml
 import com.ilyakoles.smartnotes.data.mapper.AnswerMapper
 import com.ilyakoles.smartnotes.data.network.NetworkFactory
 import com.ilyakoles.smartnotes.data.network.model.AnswerDto
 import com.ilyakoles.smartnotes.domain.Answer
 import com.ilyakoles.smartnotes.domain.users.IUserRepository
-import org.json.JSONException
-import org.json.JSONObject
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.xmlpull.v1.XmlSerializer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.StringWriter
 import javax.inject.Inject
+
 
 class UserRepositoryImpl @Inject constructor(
     private val mapper: AnswerMapper
@@ -22,19 +25,31 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun logined(login: String, password: String): Answer? {
         var vResult: Answer? = null
 
-        var jsonObj = JSONObject()
-        jsonObj.put("login", login)
-        jsonObj.put("password", password)
-
         try {
+            var serializer: XmlSerializer = Xml.newSerializer();
+            var stringXml = StringWriter()
+            serializer.setOutput(stringXml)
+            serializer.startDocument("UTF-8", true);
+            serializer.startTag("", "user_login");
+            serializer.startTag("", "login")
+            serializer.text(login)
+            serializer.endTag("", "login")
+            serializer.startTag("", "password")
+            serializer.text(password)
+            serializer.endTag("", "password")
+            serializer.endTag("", "user_login")
+            serializer.endDocument();
+
+            val requestBody = stringXml.toString().toRequestBody("text/xml".toMediaTypeOrNull())
+
             val call = NetworkFactory
-                .getJSONApi()
-                .isWrightUser(jsonObj.toString())
+                .getXMLApi()
+                .isWrightUser(requestBody)
 
             val answer: AnswerDto? = call.body()
 
             vResult = answer?.let { mapper.mapDtoModelToEntity(it) }//exe
-        } catch (e: JSONException) {
+        } catch (e: Exception) {
             Log.d("IsLogin_Error", e.message.toString())
         }
 
@@ -47,23 +62,43 @@ class UserRepositoryImpl @Inject constructor(
     ): Answer? {
         var vResult: Answer? = null
 
-        var jsonObj = JSONObject()
-        jsonObj.put("login", login)
-        jsonObj.put("password", password)
-        jsonObj.put("nicname", nicName)
-        jsonObj.put("lastname", lastName)
-        jsonObj.put("firstname", firstName)
-        jsonObj.put("email", email)
+        var serializer: XmlSerializer = Xml.newSerializer();
+        var stringXml = StringWriter()
+        serializer.setOutput(stringXml)
+        serializer.startDocument("UTF-8", true);
+        serializer.startTag("", "user_data");
+        serializer.startTag("", "login")
+        serializer.text(login)
+        serializer.endTag("", "login")
+        serializer.startTag("", "password")
+        serializer.text(password)
+        serializer.endTag("", "password")
+        serializer.startTag("", "nicname")
+        serializer.text(nicName)
+        serializer.endTag("", "nicname")
+        serializer.startTag("", "lastname")
+        serializer.text(lastName)
+        serializer.endTag("", "lastname")
+        serializer.startTag("", "firstname")
+        serializer.text(firstName)
+        serializer.endTag("", "firstname")
+        serializer.startTag("", "email")
+        serializer.text(email)
+        serializer.endTag("", "email")
+        serializer.endTag("", "user_data")
+        serializer.endDocument();
+
+        val requestBody = stringXml.toString().toRequestBody("text/xml".toMediaTypeOrNull())
 
         try {
             val call = NetworkFactory
-                .getJSONApi()
-                .addUser(jsonObj.toString())
+                .getXMLApi()
+                .addUser(requestBody)
 
             val answer: AnswerDto? = call.body()
 
             vResult = answer?.let { mapper.mapDtoModelToEntity(it) }//executeCallAsync(call);
-        } catch (e: JSONException) {
+        } catch (e: Exception) {
             Log.d("IsLogin_Error", e.message.toString())
         }
 

@@ -3,22 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardUseCompatPadding="true">
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#E0F3FF">
 
         <ImageView
             android:id="@+id/ivFolder"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
             android:layout_margin="8dp"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/folder_icon" />
+            android:src="@drawable/folder_2" />
 
         <TextView
             android:id="@+id/tvFolderName"
@@ -29,13 +32,26 @@
             android:text="ВАААasdfasdf  "
             android:textColor="#000"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvPrice"
+            app:layout_constraintEnd_toStartOf="@+id/tvCount"
             app:layout_constraintStart_toEndOf="@+id/ivFolder"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/ivFolder" />
 
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvFolderDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:maxLines="3"
+            android:text="ВАААasdfasdf  "
+            android:textColor="#000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvCount"
+            app:layout_constraintStart_toEndOf="@+id/ivFolder"
+            app:layout_constraintTop_toBottomOf="@id/tvFolderName" />
+
+        <TextView
+            android:id="@+id/tvCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -54,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

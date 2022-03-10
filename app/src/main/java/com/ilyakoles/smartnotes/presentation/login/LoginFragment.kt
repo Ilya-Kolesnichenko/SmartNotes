@@ -1,7 +1,6 @@
-package com.ilyakoles.smartnotes.presentation
+package com.ilyakoles.smartnotes.presentation.login
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +8,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -17,10 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.ilyakoles.smartnotes.R
 import com.ilyakoles.smartnotes.databinding.FragmentLoginBinding
+import com.ilyakoles.smartnotes.presentation.folders.FoldersActivity
+import com.ilyakoles.smartnotes.presentation.SmartNotesApp
+import com.ilyakoles.smartnotes.presentation.ViewModelFactory
 import com.ilyakoles.smartnotes.presentation.viewmodels.UserViewModel
 import com.ilyakoles.smartnotes.utils.RSACrypt
 import kotlinx.coroutines.launch
-import java.security.KeyPairGenerator
 import javax.inject.Inject
 
 
@@ -125,6 +125,7 @@ class LoginFragment : Fragment() {
 
                 prefs.edit().putString("Password", password).apply()
                 prefs.edit().putInt("UserID", userId).apply()
+
                 binding.tvError.visibility = View.GONE
                 val intent = FoldersActivity.newIntent(requireContext(), userId)
                 startActivity(intent)

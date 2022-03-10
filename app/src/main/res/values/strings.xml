@@ -29,6 +29,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="nav_folders">Папки</string>
+    <string name="nav_folders">Заметки и задачи</string>
     <string name="nav_calendar">Календарь</string>
+    <string name="nav_profile">Профиль</string>
+
+    <string name="folder_name">Наименование папки</string>
+    <string name="folder_desc">Описание папки</string>
+    <string name="folder_isshared">Показывать папку другим пользователям?</string>
+    <string name="folder_save">Сохранить</string>
 </resources>

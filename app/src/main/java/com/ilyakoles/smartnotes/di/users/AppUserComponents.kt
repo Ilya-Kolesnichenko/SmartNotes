@@ -1,11 +1,10 @@
 package com.ilyakoles.smartnotes.di
 
-import android.app.Activity
 import android.app.Application
 import com.ilyakoles.smartnotes.di.users.UserDataModule
-import com.ilyakoles.smartnotes.presentation.LoginActivity
-import com.ilyakoles.smartnotes.presentation.LoginFragment
-import com.ilyakoles.smartnotes.presentation.NewUserFragment
+import com.ilyakoles.smartnotes.presentation.login.LoginActivity
+import com.ilyakoles.smartnotes.presentation.login.LoginFragment
+import com.ilyakoles.smartnotes.presentation.login.NewUserFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -13,7 +12,7 @@ import dagger.Component
 @Component(
     modules = [
         UserDataModule::class,
-        ViewModelModule::class
+        UserViewModelModule::class
     ]
 )
 interface AppUserComponents {

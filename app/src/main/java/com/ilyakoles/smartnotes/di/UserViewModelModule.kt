@@ -8,16 +8,11 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-interface ViewModelModule {
+interface UserViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(UserViewModel::class)
     fun bindUserViewModel(viewModel: UserViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(FolderViewModel::class)
-    fun bindFolderViewModel(viewModel: FolderViewModel): ViewModel
 }
 
 

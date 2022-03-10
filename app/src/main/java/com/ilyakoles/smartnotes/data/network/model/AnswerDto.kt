@@ -2,19 +2,19 @@ package com.ilyakoles.smartnotes.data.network.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.Root
 
-class AnswerDto (
-    @SerializedName("error")
-    @Expose
-    val error: Boolean?,
+@Root(name = "response")
+data class AnswerDto @JvmOverloads constructor(
+    @field:Element(name = "error")
+    var error: Boolean = true,
 
-    @SerializedName("message")
-    @Expose
-    val message: String?,
+    @field:Element(name = "message")
+    var message: String = "",
 
-    @SerializedName("id")
-    @Expose
-    val id: Int?
+    @field:Element(name = "id")
+    var id: Int = 0
 )
 
 
