@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_folders"
+        android:icon="@drawable/ic_baseline_folder_open_24"
+        android:title="@string/nav_folders" />
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="@string/nav_calendar" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_baseline_how_to_reg_24"
+        android:title="@string/nav_profile" />
+
+</menu>
